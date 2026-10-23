@@ -1,17 +1,12 @@
 package FakeDB;
-
 import java.util.ArrayList;
 
-import Dominio.Aluno;
+import Dominio.*;
 
-public class AlunoFakeDB {
-    private ArrayList<Aluno> dados;
-
-    public ArrayList<Aluno> getDados() {
-        return dados;
-    }
-
-    private void autoPreencher(){
+public class AlunoFakeDB extends BaseGenericaFakeDB<Aluno>{
+    
+    @Override 
+    protected void autoPreencher(){
         this.dados.add(new Aluno(102, "KAWAN", "055.055.055.01", "01"));
         this.dados.add(new Aluno(103, "PEDRO", "055.055.055.02", "02")); 
         this.dados.add(new Aluno(104, "JOÃO", "055.055.055.03", "03"));
@@ -23,5 +18,4 @@ public class AlunoFakeDB {
         this.dados = new ArrayList<>();
         this.autoPreencher();
     }
-
 }

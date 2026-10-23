@@ -19,8 +19,8 @@ public class Professor extends BasePessoa {
     @Override
     public void exibir() {
         System.out.println("[PROFESSOR] Nome: " + this.nome);
-        System.out.println("| CPF: " + cpf);
-        System.out.println("| Salário: R$ " + salario);
+        System.out.print("| CPF: " + cpf);
+        System.out.print("| Salário: R$ " + salario);
         System.out.println("| Bonificação: " + this.calcularBonificacao());
     }
 
