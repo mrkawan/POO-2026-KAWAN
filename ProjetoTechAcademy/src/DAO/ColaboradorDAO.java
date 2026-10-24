@@ -16,25 +16,38 @@ public class ColaboradorDAO extends BaseGenericaDAO<Colaborador> {
 
     @Override
     public Colaborador readOne(int codigo) {
-        // TODO Auto-generated method stub
+        for (Colaborador item : this.repositorio) {
+            if (item.getCodigo() == codigo){
+                return item;
+            }
+        }
         return null;
     }
 
     @Override
     public Colaborador update(Colaborador alterado) {
-        // TODO Auto-generated method stub
+        int codigoProcurado = alterado.getCodigo();
+        if(this.readOne(codigoProcurado) != null){
+            int indice = this.repositorio.indexOf(alterado);
+            this.repositorio.set(indice, alterado);
+            return alterado;
+        }
         return null;
     }
 
         @Override
     public Colaborador delete(Colaborador apagado) {
-        // TODO Auto-generated method stub
-        return null;
+        int codigoParaApagar = apagado.getCodigo();
+        return this.deletePorID(codigoParaApagar);
     }
 
     @Override
     public Colaborador deletePorID(int codigo) {
-        // TODO Auto-generated method stub
+        Colaborador paraApagar = this.readOne(codigo);
+        if(paraApagar != null){
+            this.repositorio.remove(paraApagar);
+            return paraApagar;
+        }
         return null;
     }
 
