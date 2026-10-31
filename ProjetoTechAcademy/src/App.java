@@ -1,10 +1,11 @@
-import Visao.TesteSRV;
+import Visao.ColaboradorMenu;
 
 public class App {
 
     public static void main(String[] args) throws Exception {
-      TesteSRV teste = new TesteSRV();
-      teste.executar();
+      ColaboradorMenu menu = new ColaboradorMenu();
+      menu.iniciar();
+    
 
     }
 }
