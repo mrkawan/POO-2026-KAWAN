@@ -16,7 +16,4 @@ public abstract class BaseIdentificador {
     public BaseIdentificador(int codigo) {
         this.codigo = codigo;
     }
-
-    
-    
 }

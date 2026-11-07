@@ -1,7 +1,5 @@
 package FakeDB;
-
 import java.util.ArrayList;
-
 import Dominio.Professor;
 
 public class ProfessorFakeDB extends BaseGenericaFakeDB<Professor> {

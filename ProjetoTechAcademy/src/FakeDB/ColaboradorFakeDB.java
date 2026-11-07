@@ -1,7 +1,5 @@
 package FakeDB;
-
 import java.util.ArrayList;
-
 import Dominio.Colaborador;
 
 public class ColaboradorFakeDB extends BaseGenericaFakeDB<Colaborador> {

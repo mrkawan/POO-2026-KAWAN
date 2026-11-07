@@ -5,9 +5,8 @@ import java.util.Scanner;
 import Dominio.Colaborador;
 import Servico.ColaboradorSRV;
 
-public class ColaboradorMenu{
+public class ColaboradorMenu extends BaseMenu{
     private ColaboradorSRV servico;
-    private Scanner scan;
     private Colaborador colabSelecionado;
 
 
@@ -16,23 +15,10 @@ public class ColaboradorMenu{
     }
 
     private void exibirMenuPrincipal(){
-        
         this.scan = new Scanner(System.in);
         int opcao = 0;
-
         while(opcao != 9){
-        System.out.println("\n\n");
-        System.out.println("----- MENU PRINCIPAL [COLABORADOR] ------");
-        System.out.println("1 - Listar Todos");
-        System.out.println("2- Pesquisar por Código");
-        System.out.println("3 - Incluir");
-        System.out.println("4 - Alterar");
-        System.out.println("5 - Excluir");
-        System.out.println("9 - Finalizar");
-        System.out.print("Escolha uma opção: ");
-        opcao = this.scan.nextInt();
-        this.scan.nextLine();
-
+            opcao = this.exibirMenuPai("COLABORADOR");
         switch (opcao) {
             case 1:
                 this.listarTodos();
@@ -53,6 +39,8 @@ public class ColaboradorMenu{
                 System.out.println("FINALIZANDO");
                 break;                
             default:
+                System.out.println("OPÇÃO INVÁLIDA - TENTE NOVAMENTE!");
+                this.pausar();
                 break;
         }
 
@@ -77,8 +65,14 @@ public class ColaboradorMenu{
         int codigo = this.scan.nextInt();
         this.scan.nextLine();
         this.colabSelecionado = this.servico.buscar(codigo);
-        colabSelecionado.exibir();
-
+        if(this.colabSelecionado == null){
+            System.out.println("ERRO - Código INVALIDO");
+            this.pausar();
+            return;
+        }
+        else{
+            this.colabSelecionado.exibir();
+        }
     }
 
     private void incluir(){
@@ -100,8 +94,9 @@ public class ColaboradorMenu{
         System.out.println("\n\n");
         System.out.println("**** ALTERAR ****");
         this.pesquisarPorCodigo();
-        int escolha = 0;
-        while(escolha != 4){
+        if (this.colabSelecionado != null) {
+            int escolha = 0;
+            while(escolha != 4){
             System.out.println("### CAMPOS DISPONÍVEIS ###:");
             System.out.println("1-  Nome");
             System.out.println("2- CPF");
@@ -138,15 +133,21 @@ public class ColaboradorMenu{
             }
         }
 
+        }
     }
 
     private void excluir(){
         System.out.println("\n\n");
         System.out.println("**** EXCLUIR ****");
         this.pesquisarPorCodigo();
-        int codigo = this.colabSelecionado.getCodigo();
-        this.colabSelecionado = this.servico.excluirPorID(codigo);
-        this.colabSelecionado.exibir();
+        if(this.colabSelecionado != null){
+            int codigo = this.colabSelecionado.getCodigo();
+            this.colabSelecionado = this.servico.excluirPorID(codigo);
+            this.colabSelecionado.exibir();
+        }
+        else{
+            this.colabSelecionado.exibir();
+        }
     }
 
     public ColaboradorMenu(){

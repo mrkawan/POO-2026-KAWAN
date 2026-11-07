@@ -1,7 +1,5 @@
 package FakeDB;
-
 import java.util.ArrayList;
-
 import Dominio.BasePessoa;
 
 public abstract class BaseFakeDB {

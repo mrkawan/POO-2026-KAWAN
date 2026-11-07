@@ -1,6 +1,5 @@
 package FakeDB;
 import java.util.ArrayList;
-
 import Dominio.*;
 
 public class AlunoFakeDB extends BaseGenericaFakeDB<Aluno>{
